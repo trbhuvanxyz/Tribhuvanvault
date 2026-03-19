@@ -1,37 +1,55 @@
-CTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>RockVault Admin Panel</title>
   <style>
     body {
-      background: rgb(249, 2, 2);
-      color: rgb(76, 4, 124);
+      background: black;
+      color: white;
       font-family: Arial, sans-serif;
       text-align: center;
+    }
+    h1 { 
+      background: purple; 
+      color: white; 
+      padding: 15px; 
+      border-radius: 8px;
+    }
+    h2, p { 
+      color: red; 
     }
     input {
       padding: 8px;
       margin: 5px;
       width: 250px;
+      border-radius: 4px;
+      border: 1px solid #555;
     }
     button {
       padding: 10px 20px;
       margin: 10px;
-      background: #1e1e1e;
+      background: purple;
       color: white;
-      border: 1px solid #555;
+      border: 1px solid red;
       cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
     }
     button:hover {
-      background: #555;
+      background: red;
     }
     img {
       width: 150px;
       border-radius: 50%;
       margin: 20px;
+      border: 3px solid purple;
     }
     .container {
       margin-top: 30px;
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
     }
   </style>
 </head>
@@ -43,17 +61,12 @@ CTYPE html>
   <!-- About Me Section -->
   <img src="photo.jpg" alt="Tribhuvans">
   <h2>Tribhuvans Singh Shekhawat</h2>
-  <p style="color:rgba(74, 4, 87, 0.232);">About Me: Rock and Metal Music Collector, gradauted from Manipal University Jaipur
-    with a degree in Bachelor of Computer Applications and will graduate again with Masters of Computer Applications,
-    I love Metal, Rock, UFC, Wrestling, Dogs, so much more, not a traveller or an out going person,
-    close the Kick Streamers and Open up a Book, get some wisdom while your at it, these people, 
-    will never help, books will. Instagram is tribhuvan.rockhard and I write books. Metalhead for life y'all.
-    I support No Iran, No Israel, No Ukraine, I only support my Novels and some beautiful women.<Testimonial-Tribhuvan-Singh-Shekh></Testimonial-Tribhuvan-Singh-Shekh>
-  </p>
+  <p>About Me: Rock and Metal Music Collector</p>
 
   <div class="container">
-    <h2>Add Rock & Metal Songs</h2>
+    <h2>Add Song</h2>
 
+    <!-- Manual Add Song Form -->
     <input id="name" placeholder="Song Name"><br>
     <input id="artist" placeholder="Artist"><br>
     <input id="file" placeholder="MP3 URL"><br>
@@ -62,7 +75,7 @@ CTYPE html>
   </div>
 
   <script>
-    // Manual add single song
+    // Manual add song
     async function addSong() {
       let song = {
         name: document.getElementById("name").value,
@@ -78,20 +91,19 @@ CTYPE html>
 
       alert("Song Added 🤘");
 
-      // Clear inputs
+      // Clear input fields
       document.getElementById("name").value = "";
       document.getElementById("artist").value = "";
       document.getElementById("file").value = "";
     }
 
-    // Bulk add songs
+    // Bulk add pre-listed songs
     const songsToAdd = [
       { name: "MakeDamnSure", artist: "Taking Back Sunday", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/makeDamnSure.mp3" },
       { name: "Faint", artist: "Linkin Park", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/faint.mp3" },
       { name: "Tears Don't Fall", artist: "Bullet for My Valentine", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/tearsDontFall.mp3" },
-      { name: "Photograph", artist: "Nickelback", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/photograph.mp3" },
-      { name: "Lying is the most fun", artist: "Panic at the Disco", file: "https://raw.gitbuhusercontent.com/Tribhuvans/TribhuvanVault/main/lyingisthemostfun.mp3"}
-      // Add more songs here in same format
+      { name: "Photograph", artist: "Nickelback", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/photograph.mp3" }
+      // Add more songs here
     ];
 
     async function addAllSongs() {
