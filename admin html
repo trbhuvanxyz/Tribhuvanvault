@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Panel</title>
+  <title>Admin Panel</title>
 </head>
 
 <body style="background:black;color:white;font-family:Arial;text-align:center">
 
-<h1>Add Song 🤘</h1>
+  <h1>Add Song 🤘</h1>
 
-<input id="name" placeholder="Song Name"><br><br>
+  <input id="name" placeholder="Song Name"><br><br>
+  <input id="artist" placeholder="Artist"><br><br>
+  <input id="file" placeholder="MP3 URL"><br><br>
 
-<input id="artist" placeholder="Artist"><br><br>
+  <button onclick="addSong()">Add Song</button>
 
-<input id="file" placeholder="MP3 URL"><br><br>
+  <script>
+    // FULLY UPGRADED FUNCTION
+    async function addSong() {
 
-<button onclick="addSong()">Add Song</button>
+      let song = {
+        name: document.getElementById("name").value,
+        artist: document.getElementById("artist").value,
+        file: document.getElementById("file").value
+      };
 
-<script>
+      // POST song to backend
+      await fetch("https://tribhuvanvault.onrender.com/add-song", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(song)
+      });
 
-function addSong(){
+      alert("Song Added 🤘");
 
-let song = {
-name: document.getElementById("name").value,
-artist: document.getElementById("artist").value,
-file: document.getElementById("file").value
-};
-
-let songs = JSON.parse(localStorage.getItem("songs")) || [];
-
-songs.push(song);
-
-localStorage.setItem("songs", JSON.stringify(songs));
-
-alert("Song Added 🤘");
-
-}
-
-</script>
+      // Clear inputs after adding
+      document.getElementById("name").value = "";
+      document.getElementById("artist").value = "";
+      document.getElementById("file").value = "";
+    }
+  </script>
 
 </body>
 </html>
