@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+</head>
+
+<body style="background:black;color:white;font-family:Arial;text-align:center">
+
+<h1>Add Song 🤘</h1>
+
+<input id="name" placeholder="Song Name"><br><br>
+
+<input id="artist" placeholder="Artist"><br><br>
+
+<input id="file" placeholder="MP3 URL"><br><br>
+
+<button onclick="addSong()">Add Song</button>
+
+<script>
+
+function addSong(){
+
+let song = {
+name: document.getElementById("name").value,
+artist: document.getElementById("artist").value,
+file: document.getElementById("file").value
+};
+
+let songs = JSON.parse(localStorage.getItem("songs")) || [];
+
+songs.push(song);
+
+localStorage.setItem("songs", JSON.stringify(songs));
+
+alert("Song Added 🤘");
+
+}
+
+</script>
+
+</body>
+</html>
