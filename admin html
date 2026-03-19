@@ -1,32 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin Panel</title>
+  <title>RockVault Admin Panel</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 250px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      background: #1e1e1e;
+      color: white;
+      border: 1px solid #555;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+    img {
+      width: 150px;
+      border-radius: 50%;
+      margin: 20px;
+    }
+    .container {
+      margin-top: 30px;
+    }
+  </style>
 </head>
 
-<body style="background:black;color:white;font-family:Arial;text-align:center">
+<body>
 
-  <h1>Add Song 🤘</h1>
+  <h1>RockVault Admin Panel 🤘</h1>
 
-  <!-- Manual add form -->
-  <input id="name" placeholder="Song Name"><br><br>
-  <input id="artist" placeholder="Artist"><br><br>
-  <input id="file" placeholder="MP3 URL"><br><br>
+  <!-- About Me Section -->
+  <img src="photo.jpg" alt="Tribhuvans">
+  <h2>Tribhuvans Singh Shekhawat</h2>
+  <p style="color:#00f;">About Me: Rock and Metal Music Collector</p>
 
-  <button onclick="addSong()">Add Song</button>
-  <button onclick="addAllSongs()">Add Bulk Songs</button>
+  <div class="container">
+    <h2>Add Song</h2>
+
+    <input id="name" placeholder="Song Name"><br>
+    <input id="artist" placeholder="Artist"><br>
+    <input id="file" placeholder="MP3 URL"><br>
+    <button onclick="addSong()">Add Song</button>
+    <button onclick="addAllSongs()">Add Bulk Songs</button>
+  </div>
 
   <script>
-    // 1️⃣ Manual add function (your upgraded version)
+    // Manual add single song
     async function addSong() {
-
       let song = {
         name: document.getElementById("name").value,
         artist: document.getElementById("artist").value,
         file: document.getElementById("file").value
       };
 
-      // POST song to backend
       await fetch("https://tribhuvanvault.onrender.com/add-song", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -41,13 +78,13 @@
       document.getElementById("file").value = "";
     }
 
-    // 2️⃣ Bulk add function
+    // Bulk add songs
     const songsToAdd = [
       { name: "MakeDamnSure", artist: "Taking Back Sunday", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/makeDamnSure.mp3" },
       { name: "Faint", artist: "Linkin Park", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/faint.mp3" },
       { name: "Tears Don't Fall", artist: "Bullet for My Valentine", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/tearsDontFall.mp3" },
       { name: "Photograph", artist: "Nickelback", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/photograph.mp3" }
-      // Add more songs here in the same format
+      // Add more songs here in same format
     ];
 
     async function addAllSongs() {
