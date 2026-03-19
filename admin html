@@ -8,14 +8,16 @@
 
   <h1>Add Song 🤘</h1>
 
+  <!-- Manual add form -->
   <input id="name" placeholder="Song Name"><br><br>
   <input id="artist" placeholder="Artist"><br><br>
   <input id="file" placeholder="MP3 URL"><br><br>
 
   <button onclick="addSong()">Add Song</button>
+  <button onclick="addAllSongs()">Add Bulk Songs</button>
 
   <script>
-    // FULLY UPGRADED FUNCTION
+    // 1️⃣ Manual add function (your upgraded version)
     async function addSong() {
 
       let song = {
@@ -33,10 +35,31 @@
 
       alert("Song Added 🤘");
 
-      // Clear inputs after adding
+      // Clear inputs
       document.getElementById("name").value = "";
       document.getElementById("artist").value = "";
       document.getElementById("file").value = "";
+    }
+
+    // 2️⃣ Bulk add function
+    const songsToAdd = [
+      { name: "MakeDamnSure", artist: "Taking Back Sunday", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/makeDamnSure.mp3" },
+      { name: "Faint", artist: "Linkin Park", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/faint.mp3" },
+      { name: "Tears Don't Fall", artist: "Bullet for My Valentine", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/tearsDontFall.mp3" },
+      { name: "Photograph", artist: "Nickelback", file: "https://raw.githubusercontent.com/Tribhuvans/TribhuvanVault/main/photograph.mp3" }
+      // Add more songs here in the same format
+    ];
+
+    async function addAllSongs() {
+      for (let song of songsToAdd) {
+        await fetch("https://tribhuvanvault.onrender.com/add-song", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(song)
+        });
+        console.log(`Added: ${song.name} by ${song.artist}`);
+      }
+      alert("All songs added 🤘");
     }
   </script>
 
